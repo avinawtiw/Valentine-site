@@ -1,67 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Valentine's Day ❤️</title>
+<title>Happy Valentine’s Day ❤️</title>
 
 <style>
-body {
+* {
     margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(#ffccd5,#fff0f3);
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffccd5, #fff0f3);
+    overflow-x:hidden;
     text-align:center;
     color:#b30059;
 }
 
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity:0; }
+    20% { opacity:0.8; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity:0; }
+}
+
+/* Main container */
 .container {
-    padding:20px;
+    padding: 20px;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity:0; transform: translateY(20px);}
+    to { opacity:1; transform: translateY(0);}
 }
 
 h1 {
-    margin-top:30px;
-    font-size:2.2rem;
+    margin-top: 30px;
+    font-size: 2.4rem;
+    text-shadow: 0 0 10px rgba(255,0,100,0.3);
 }
 
 .message {
-    font-size:1.2rem;
-    margin:20px;
-    line-height:1.6;
+    margin: 20px auto;
+    max-width: 500px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    background: rgba(255,255,255,0.5);
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
 }
 
+/* Photo gallery */
 .gallery img {
-    width:85%;
-    max-width:350px;
-    border-radius:20px;
-    margin:15px 0;
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    width: 85%;
+    max-width: 350px;
+    margin: 15px 0;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
 }
 
 footer {
-    margin:30px 0;
-    font-size:1.3rem;
-    font-weight:bold;
+    margin: 30px 0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { transform: scale(1);}
+    50% { transform: scale(1.05);}
+}
+
+/* Play music button */
+.play-btn {
+    margin: 20px;
+    padding: 12px 24px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d88;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.play-btn:hover {
+    transform: scale(1.05);
 }
 </style>
 </head>
 
 <body>
 
+<!-- Floating hearts -->
+<div class="heart" style="left:10%; animation-delay:0s;">❤️</div>
+<div class="heart" style="left:25%; animation-delay:2s;">💖</div>
+<div class="heart" style="left:40%; animation-delay:4s;">💕</div>
+<div class="heart" style="left:60%; animation-delay:1s;">💗</div>
+<div class="heart" style="left:75%; animation-delay:3s;">💓</div>
+<div class="heart" style="left:90%; animation-delay:5s;">❤️</div>
+
 <div class="container">
+
     <h1>Happy Valentine’s Day ❤️</h1>
 
     <div class="message">
-        Dear Srishtu,<br><br>
-        Every moment with you is special.  
+        Dear Srishtu, <br><br>
+        Ye sab maine khud se banaya h.   
         Thank you for being part of my life.  
-        I just want to say…<br><br>
+        I just want to say… <br><br>
         <strong>I Love You ❤️</strong>
     </div>
 
+    <button class="play-btn" onclick="document.getElementById('music').play()">
+        ▶️ Tap to play our song
+    </button>
+
     <div class="gallery">
-        <img src="photo1.jpeg">
-        <img src="photo2.jpeg">
-        <img src="photo3.jpeg">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
     </div>
 
     <footer>
@@ -69,10 +146,9 @@ footer {
     </footer>
 </div>
 
-<audio autoplay loop>
+<audio id="music" loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 </body>
 </html>
-
